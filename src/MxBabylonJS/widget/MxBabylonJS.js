@@ -86,6 +86,8 @@ require(
 					this._handles=[];
 				},
 				postCreate:function(){
+					mx.ui.info('3');
+					window.wid=this;
 					this.canvas=dojo.create(
 						"canvas",
 						{
@@ -126,11 +128,11 @@ require(
 					};
 					/******* End of the create scene function ******/	
 
-					var scene = createScene(); //Call the createScene function
+					this.scene = createScene(); //Call the createScene function
 
 					// Register a render loop to repeatedly render the scene
 					engine.runRenderLoop(function () { 
-							scene.render();
+							this.scene.render();
 					});
 
 					// Watch for browser/canvas resize events
@@ -145,28 +147,33 @@ require(
 						this.isRunning=false;
 						return;
 					}
-					var canvas = document.getElementById("renderCanvas"); // Get the canvas element 
+					this.canvas = document.getElementById("renderCanvas"); // Get the canvas element 
 					if(BABYLON.Engine.isSupported()){
 						var canvas=document.getElementById("renderCanvas");
-						var engine=new BABYLON.Engine(canvas,true);
-						BABYLON.SceneLoader.Load("/",urlP,engine,function(scene){
+						this.engine=this.engine==null?new BABYLON.Engine(canvas,true):this.engine;
+						BABYLON.SceneLoader.Load("/",urlP,this.engine,dojo.hitch(this,function(scene){
+							this.scene=scene;
 							// Wait for textures and shaders to be ready
-							scene.executeWhenReady(function () {
+							this.scene.executeWhenReady(dojo.hitch(this,function () {
 								// Attach camera to canvas inputs
-								//scene.activeCamera.attachControl(canvas);
-								var camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 2, new BABYLON.Vector3(0,0,5), scene);
-								camera.attachControl(canvas, true);
+								var camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 2, new BABYLON.Vector3(0,0,5),scene);
+								camera.attachControl(this.canvas, true);
 								// Add lights to the scene
-								var light1 = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(1, 1, 0), scene);
-								var light2 = new BABYLON.PointLight("light2", new BABYLON.Vector3(0, 1, -1), scene);
+								//var light1 = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(1, 1, 0), scene);
+								//var light2 = new BABYLON.PointLight("light2", new BABYLON.Vector3(0, 1, -1), scene);
 								// Once the scene is loaded, just register a render loop to render it
-								engine.runRenderLoop(function() {
+								this.engine.runRenderLoop(dojo.hitch(this,function() {
 									scene.render();
-								});
-							});
-						}, function (progress) {
+								}));
+							}));
+						}), function (progress) {
 							// To do: give progress feedback to user
 						});
+						// Watch for browser/canvas resize events
+						window.addEventListener("resize", dojo.hitch(this,function () { 
+								this.engine.resize();
+						}));
+
 					}
 				},
 
@@ -190,6 +197,8 @@ require(
 							try{
 								this.isLoading=true;
 								//this.test1('a.babylon');//'BoomBox.gltf');//'cornellBox.glb');//'Duck.gltf');//'a.babylon');//url);
+								this.engine!=null?this.engine.stopRenderLoop():null;
+								this.scene!=null?this.scene.dispose():null;
 								this.test1(_url);
 								this.isRunning=true;
 							}catch(e){
