@@ -1,0 +1,3 @@
+$ find ./widgets|grep MxBabylonJS|grep lib|grep "\.js"|while read LINE;do DIRNAME=`dirname $LINE`;BASENAME=`basename -s ".js" $LINE`;printf "{\n\tname:\"_$BASENAME\",\n\tlocation:\"$DIRNAME/$BASENAME\",\n\tmain:\"$BASENAME\"\n},\n";done|clip
+$ find ./widgets|grep MxBabylonJS|grep lib|grep "\.js"|while read LINE;do DIRNAME=`dirname $LINE|tr -s "./" "/"`;BASENAME=`basename -s ".js" $LINE`;pri
+ntf "{\n\tname:\"_$BASENAME\",\n\tlocation:\"$DIRNAME\",\n\tmain:\"$BASENAME\"\n},\n";done|clip
