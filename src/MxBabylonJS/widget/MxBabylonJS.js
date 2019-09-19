@@ -3,17 +3,20 @@ require(
 		packages:[
 			{
 				name:'babylonjs',
-				location:'/widgets/MxBabylonJS/lib/babylonjscdn',
+				//location:'/widgets/MxBabylonJS/lib/babylonjscdn',
+				location:'/widgets/MxBabylonJS/lib/babylonjs',
 				main:'babylon.max',
 			},
 			{
 				name:'babylonjs_materials',
-				location:'/widgets/MxBabylonJS/lib/babylonjscdn',
+				//location:'/widgets/MxBabylonJS/lib/babylonjscdn',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/materialsLibrary',
 				main:'babylonjs.materials',
 			},
 			{
 				name:'pep',
-				location:'/widgets/MxBabylonJS/lib/babylonjscdn',
+				//location:'/widgets/MxBabylonJS/lib/babylonjscdn',
+				location:'/widgets/MxBabylonJS/lib/pep',
 				main:'pep',
 			}
 			/* ???
@@ -77,57 +80,96 @@ require(
 				widgetBase:null,
 				_handles:null,
 				_contextObj:null,
+				isLoading:false,
+				isRunning:false,
 				constructor:function(){
 					this._handles=[];
 				},
 				postCreate:function(){
-					this.domNode.appendChild(
-						dojo.create(
-							"canvas",
-							{
-								'id':'renderCanvas',//this.id+'_canvas',
-								'touch-action':'none',
-								'width':'320px',
-								'height':'320px'
-							}
-						)
+					this.canvas=dojo.create(
+						"canvas",
+						{
+							'id':'renderCanvas',//this.id+'_canvas',
+							'touch-action':'none',
+							'width':'320px',
+							'height':'320px',
+							'style':'width:100%;'
+						}
 					);
-	var canvas = document.getElementById("renderCanvas"); // Get the canvas element 
-        var engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
-
-        /******* Add the create scene function ******/
-        var createScene = function () {
-
-            // Create the scene space
-            var scene = new BABYLON.Scene(engine);
-
-            // Add a camera to the scene and attach it to the canvas
-            var camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 2, new BABYLON.Vector3(0,0,5), scene);
-            camera.attachControl(canvas, true);
-
-            // Add lights to the scene
-            var light1 = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(1, 1, 0), scene);
-            var light2 = new BABYLON.PointLight("light2", new BABYLON.Vector3(0, 1, -1), scene);
-
-            // Add and manipulate meshes in the scene
-            var sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {diameter:2}, scene);
-
-            return scene;
-        };
-        /******* End of the create scene function ******/    
-
-        var scene = createScene(); //Call the createScene function
-
-        // Register a render loop to repeatedly render the scene
-        engine.runRenderLoop(function () { 
-                scene.render();
-        });
-
-        // Watch for browser/canvas resize events
-        window.addEventListener("resize", function () { 
-                engine.resize();
-        });
+					this.domNode.appendChild(
+						this.canvas
+					);
+					//this.test0();
 				},
+				test0:function(){
+					var canvas = document.getElementById("renderCanvas"); // Get the canvas element 
+					var engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
+
+					/******* Add the create scene function ******/
+					var createScene = function () {
+
+						// Create the scene space
+						var scene = new BABYLON.Scene(engine);
+
+						// Add a camera to the scene and attach it to the canvas
+						var camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 2, new BABYLON.Vector3(0,0,5), scene);
+						camera.attachControl(canvas, true);
+
+						// Add lights to the scene
+						var light1 = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(1, 1, 0), scene);
+						var light2 = new BABYLON.PointLight("light2", new BABYLON.Vector3(0, 1, -1), scene);
+
+						// Add and manipulate meshes in the scene
+						var sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {diameter:2}, scene);
+
+						return scene;
+					};
+					/******* End of the create scene function ******/	
+
+					var scene = createScene(); //Call the createScene function
+
+					// Register a render loop to repeatedly render the scene
+					engine.runRenderLoop(function () { 
+							scene.render();
+					});
+
+					// Watch for browser/canvas resize events
+					window.addEventListener("resize", function () { 
+							engine.resize();
+					});
+
+				},
+				test1:function(urlP){
+					if(!typeof(urlP)=='string'){
+						this.isLoading=false;
+						this.isRunning=false;
+						return;
+					}
+					var canvas = document.getElementById("renderCanvas"); // Get the canvas element 
+					if(BABYLON.Engine.isSupported()){
+						var canvas=document.getElementById("renderCanvas");
+						var engine=new BABYLON.Engine(canvas,true);
+						BABYLON.SceneLoader.Load("/",urlP,engine,function(scene){
+							// Wait for textures and shaders to be ready
+							scene.executeWhenReady(function () {
+								// Attach camera to canvas inputs
+								//scene.activeCamera.attachControl(canvas);
+								var camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 2, new BABYLON.Vector3(0,0,5), scene);
+								camera.attachControl(canvas, true);
+								// Add lights to the scene
+								var light1 = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(1, 1, 0), scene);
+								var light2 = new BABYLON.PointLight("light2", new BABYLON.Vector3(0, 1, -1), scene);
+								// Once the scene is loaded, just register a render loop to render it
+								engine.runRenderLoop(function() {
+									scene.render();
+								});
+							});
+						}, function (progress) {
+							// To do: give progress feedback to user
+						});
+					}
+				},
+
 				update:function(obj,callback){
 					this._contextObj=obj;
 					this._updateRendering(callback);
@@ -137,13 +179,31 @@ require(
 				uninitialize:function(){
 				},
 				_updateRendering:function(callback){
-					/*
 					if(this._contextObj!==null){
-						dojoStyle.set(this.domNode,"display","block");
+						if(!this.isLoading){
+							//dojoStyle.set(this.domNode,"display","block");
+							console.log('0----------------------------------------');
+							console.log(this._contextObj);
+							var _url='file?guid='+this._contextObj.getGuid()+'&cachebust='+(new Date().getTime())+'&filename='+(this._contextObj.get('Name')==null||this._contextObj.get('Name')==''?'.babylon':this._contextObj.get('Name'));
+							console.log(_url);
+							console.log('1----------------------------------------');
+							try{
+								this.isLoading=true;
+								//this.test1('a.babylon');//'BoomBox.gltf');//'cornellBox.glb');//'Duck.gltf');//'a.babylon');//url);
+								this.test1(_url);
+								this.isRunning=true;
+							}catch(e){
+								console.error(e);
+							}finally{
+								this.isLoading=false;
+								this.isRunning=false;
+							}
+
+						}else{
+						}
 					}else{
-						dojoStyle.set(this.domNode,"display","none")	;
+						//dojoStyle.set(this.domNode,"display","none")	;
 					}
-					*/
 					this._executeCallback(callback,"_updateRendering");
 				},
 				_execMf:function(mf,guid,cb){
