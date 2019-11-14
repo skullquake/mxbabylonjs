@@ -3,27 +3,10 @@ require(
 		packages:[
 			{
 				name:'babylonjs',
-				//location:'/widgets/MxBabylonJS/lib/babylonjscdn',
-				location:'/widgets/MxBabylonJS/lib/babylonjs',
-				main:'babylon.max',
-			},
-			{
-				name:'babylonjs_materials',
-				//location:'/widgets/MxBabylonJS/lib/babylonjscdn',
-				location:'/widgets/MxBabylonJS/lib/babylonjs/materialsLibrary',
-				main:'babylonjs.materials',
-			},
-			{
-				name:'pep',
-				//location:'/widgets/MxBabylonJS/lib/babylonjscdn',
-				location:'/widgets/MxBabylonJS/lib/pep',
-				main:'pep',
+				//location:'/widgets/MxBabylonJS/lib/babylonjs',
+				location:'/widgets/MxBabylonJS/lib',
+				main:'babylon'
 			}
-			/* ???
-			shim : {
-				babylonjs: {deps: ['pep']}
-			}
-			*/
 		]
 	},
 	[
@@ -44,8 +27,6 @@ require(
 		'dojo/html',
 		'dojo/_base/event',
 		'babylonjs',
-		'babylonjs_materials',
-		'pep',
 		'dojo/text!MxBabylonJS/widget/template/MxBabylonJS.html'
 	],
 	function(
@@ -66,12 +47,9 @@ require(
 		dojoHtml,
 		dojoEvent,
 		babylonjs,
-		babylonjs_materials,
-		pep,
 		widgetTemplate
 	){
 		"use strict";
-		//var $ = _jQuery.noConflict(true);
 		return declare(
 			"MxBabylonJS.widget.MxBabylonJS",
 			[
@@ -88,7 +66,7 @@ require(
 					this._handles=[];
 				},
 				postCreate:function(){
-					this.domNode.appendChild(this.canvas);
+					//this.domNode.appendChild(this.canvas);
 				},
 				draw:function(urlP){
 					if(!typeof(urlP)=='string'){

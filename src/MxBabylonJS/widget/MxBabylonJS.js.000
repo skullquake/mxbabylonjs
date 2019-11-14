@@ -1,0 +1,519 @@
+require(
+	{
+		packages:[
+			{
+				name:'babylonjs',
+				//location:'/widgets/MxBabylonJS/lib/babylonjs',
+				location:'/widgets/MxBabylonJS/lib',
+				main:'babylon.max'
+			},
+			{
+				name:'babylonjs_materials',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/materialsLibrary',
+				main:'babylonjs.materials'
+			},
+			{
+				name:'pep',
+				location:'/widgets/MxBabylonJS/lib/pep',
+				main:'pep'
+			},
+			{
+				name:'babylonGui',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/gui',// dependency: babylonjs
+				main:'babylon.gui'
+			},
+			{
+				name:'babylonInspectorBundleMax',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/inspector',// dependency: babylonjs-gui
+				main:'babylon.inspector.bundle.max'
+			},
+			/*
+			{
+				main:'babylonInspectorBundleMax',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/inspector',// dependency: babylonjs-loaders
+				main:'babylon.inspector.bundle.max'
+			},
+			{
+				name:'babylonInspectorBundleMax',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/inspector',// dependency: babylonjs-serializers
+				main:'/babylon.inspector.bundle.max'
+			},
+			*/
+			{
+				location:'/widgets/MxBabylonJS/lib/babylonjs/inspector',// dependency: babylonjs
+				main:'babylon.inspector.bundle.max'
+			},
+			{
+				name:'babylonGlTF1FileLoader',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/loaders',// dependency: babylonjs
+				main:'babylon.glTF1FileLoader'
+			},
+			{
+				name:'babylonGlTF2FileLoader',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/loaders',// dependency: babylonjs
+				main:'babylon.glTF2FileLoader'
+			},
+			{
+				name:'babylonGlTFFileLoader',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/loaders',// dependency: babylonjs
+				main:'babylon.glTFFileLoader'
+			},
+			{
+				name:'babylonObjFileLoader',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/loaders',// dependency: babylonjs
+				main:'babylon.objFileLoader'
+			},
+			{
+				name:'babylonStlFileLoader',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/loaders',// dependency: babylonjs
+				main:'babylon.stlFileLoader'
+			},
+			{
+				name:'babylonjsLoaders',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/loaders',// dependency: babylonjs
+				main:'babylonjs.loaders'
+			},
+			{
+				name:'babylonCellMaterial',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/materialsLibrary',// dependency: babylonjs
+				main:'babylon.cellMaterial'
+			},
+			{
+				name:'babylonCustomMaterial',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/materialsLibrary',// dependency: babylonjs
+				main:'babylon.customMaterial'
+			},
+			{
+				name:'babylonFireMaterial',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/materialsLibrary',// dependency: babylonjs
+				main:'babylon.fireMaterial'
+			},
+			{
+				name:'babylonFurMaterial',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/materialsLibrary',// dependency: babylonjs
+				main:'babylon.furMaterial'
+			},
+			{
+				name:'babylonGradientMaterial',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/materialsLibrary',// dependency: babylonjs
+				main:'babylon.gradientMaterial'
+			},
+			{
+				name:'babylonGridMaterial',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/materialsLibrary',// dependency: babylonjs
+				main:'babylon.gridMaterial'
+			},
+			{
+				name:'babylonLavaMaterial',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/materialsLibrary',// dependency: babylonjs
+				main:'babylon.lavaMaterial'
+			},
+			{
+				name:'babylonMixMaterial',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/materialsLibrary',// dependency: babylonjs
+				main:'babylon.mixMaterial'
+			},
+			{
+				name:'babylonNormalMaterial',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/materialsLibrary',// dependency: babylonjs
+				main:'babylon.normalMaterial'
+			},
+			{
+				name:'babylonShadowOnlyMaterial',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/materialsLibrary',// dependency: babylonjs
+				main:'babylon.shadowOnlyMaterial'
+			},
+			{
+				name:'babylonSimpleMaterial',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/materialsLibrary',// dependency: babylonjs
+				main:'babylon.simpleMaterial'
+			},
+			{
+				name:'babylonSkyMaterial',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/materialsLibrary',// dependency: babylonjs
+				main:'babylon.skyMaterial'
+			},
+			{
+				name:'babylonTerrainMaterial',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/materialsLibrary',// dependency: babylonjs
+				main:'babylon.terrainMaterial'
+			},
+			{
+				name:'babylonTriPlanarMaterial',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/materialsLibrary',// dependency: babylonjs
+				main:'babylon.triPlanarMaterial'
+			},
+			{
+				name:'babylonWaterMaterial',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/materialsLibrary',// dependency: babylonjs
+				main:'babylon.waterMaterial'
+			},
+			{
+				name:'babylonjsMaterials',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/materialsLibrary',// dependency: babylonjs
+				main:'babylonjs.materials'
+			},
+			{
+				name:'babylonAsciiArtPostProcess',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/postProcessLibrary',// dependency: babylonjs
+				main:'babylon.asciiArtPostProcess'
+			},
+			{
+				name:'babylonDigitalRainPostProcess',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/postProcessLibrary',// dependency: babylonjs
+				main:'babylon.digitalRainPostProcess'
+			},
+			{
+				name:'babylonOceanPostProcess',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/postProcessLibrary',// dependency: babylonjs
+				main:'babylon.oceanPostProcess'
+			},
+			{
+				name:'babylonjsPostProcess',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/postProcessLibrary',// dependency: babylonjs
+				main:'babylonjs.postProcess'
+			},
+			{
+				name:'babylonBrickProceduralTexture',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/proceduralTexturesLibrary',// dependency: babylonjs
+				main:'babylon.brickProceduralTexture'
+			},
+
+			{
+				name:'babylonCloudProceduralTexture',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/proceduralTexturesLibrary',// dependency: babylonjs
+				main:'babylon.cloudProceduralTexture'
+			},
+			{
+				name:'babylonFireProceduralTexture',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/proceduralTexturesLibrary',// dependency: babylonjs
+				main:'babylon.fireProceduralTexture'
+			},
+			{
+				name:'babylonGrassProceduralTexture',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/proceduralTexturesLibrary',// dependency: babylonjs
+				main:'babylon.grassProceduralTexture'
+			},
+			{
+				name:'babylonMarbleProceduralTexture',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/proceduralTexturesLibrary',// dependency: babylonjs
+				main:'babylon.marbleProceduralTexture'
+			},
+			{
+				name:'babylonNormalMapProceduralTexture',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/proceduralTexturesLibrary',// dependency: babylonjs
+				main:'babylon.normalMapProceduralTexture'
+			},
+			{
+				name:'babylonPerlinNoiseProceduralTexture',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/proceduralTexturesLibrary',// dependency: babylonjs
+				main:'babylon.perlinNoiseProceduralTexture'
+			},
+			{
+				name:'babylonRoadProceduralTexture',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/proceduralTexturesLibrary',// dependency: babylonjs
+				main:'babylon.roadProceduralTexture'
+			},
+			{
+				name:'babylonStarfieldProceduralTexture',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/proceduralTexturesLibrary',// dependency: babylonjs
+				main:'babylon.starfieldProceduralTexture'
+			},
+			{
+				name:'babylonWoodProceduralTexture',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/proceduralTexturesLibrary',// dependency: babylonjs
+				main:'babylon.woodProceduralTexture'
+			},
+			{
+				name:'babylonjsProceduralTextures',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/proceduralTexturesLibrary',// dependency: babylonjs
+				main:'babylonjs.proceduralTextures'
+			},
+			{
+				name:'babylonGlTF2Serializer',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/serializers',// dependency: babylonjs
+				main:'babylon.glTF2Serializer'
+			},
+			{
+				name:'babylonObjSerializer',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/serializers',// dependency: babylonjs
+				main:'babylon.objSerializer'
+			},
+			{
+				name:'babylonjsSerializers',
+				location:'/widgets/MxBabylonJS/lib/babylonjs/serializers',// dependency: babylonjs
+				main:'babylonjs.serializers'
+			},
+			{
+				name:'common',
+				location:'/widgets/MxBabylonJS/lib',// dependency: babylonjs
+				main:'common'
+			},
+			/*
+			{
+				name:'babylonjsMaterials',
+				location:'/widgets/MxBabylonJS/lib/babylonjscdn',// dependency: babylonjs
+				main:'babylonjs.materials'
+			}
+			*/
+			/*
+			{
+				name:'',
+				location:'',
+				main:'',
+			}
+			*/
+			/* ???
+			shim : {
+				babylonjs: {deps: ['pep']}
+			}
+			*/
+		]
+	},
+	[
+		'dojo/_base/declare',
+		'mxui/widget/_WidgetBase',
+		'dijit/_TemplatedMixin',
+		'mxui/dom',
+		'dojo/dom',
+		'dojo/dom-attr',
+		'dojo/dom-prop',
+		'dojo/dom-geometry',
+		'dojo/dom-class',
+		'dojo/dom-style',
+		'dojo/dom-construct',
+		'dojo/_base/array',
+		'dojo/_base/lang',
+		'dojo/text',
+		'dojo/html',
+		'dojo/_base/event',
+		'babylonjs',
+		/*
+		'babylonjs_materials',
+		'pep',
+		'babylonGui',
+		'babylonInspectorBundleMax',
+		'babylonGlTF1FileLoader',
+		'babylonGlTF2FileLoader',
+		'babylonGlTFFileLoader',
+		'babylonObjFileLoader',
+		'babylonStlFileLoader',
+		'babylonjsLoaders',
+		'babylonCellMaterial',
+		'babylonCustomMaterial',
+		'babylonFireMaterial',
+		'babylonFurMaterial',
+		'babylonGradientMaterial',
+		'babylonGridMaterial',
+		'babylonLavaMaterial',
+		'babylonMixMaterial',
+		'babylonNormalMaterial',
+		'babylonShadowOnlyMaterial',
+		'babylonSimpleMaterial',
+		'babylonSkyMaterial',
+		'babylonTerrainMaterial',
+		'babylonTriPlanarMaterial',
+		'babylonWaterMaterial',
+		'babylonjsMaterials',
+		'babylonAsciiArtPostProcess',
+		'babylonDigitalRainPostProcess',
+		'babylonOceanPostProcess',
+		'babylonjsPostProcess',
+		'babylonBrickProceduralTexture',
+		'babylonCloudProceduralTexture',
+		'babylonFireProceduralTexture',
+		'babylonGrassProceduralTexture',
+		'babylonMarbleProceduralTexture',
+		'babylonNormalMapProceduralTexture',
+		'babylonPerlinNoiseProceduralTexture',
+		'babylonRoadProceduralTexture',
+		'babylonStarfieldProceduralTexture',
+		'babylonWoodProceduralTexture',
+		'babylonjsProceduralTextures',
+		'babylonGlTF2Serializer',
+		'babylonObjSerializer',
+		'babylonjsSerializers',
+		'common',
+		*/
+		'dojo/text!MxBabylonJS/widget/template/MxBabylonJS.html'
+	],
+	function(
+		declare,
+		_WidgetBase,
+		_TemplatedMixin,
+		dom,
+		domAttr,
+		dojoDom,
+		dojoProp,
+		dojoGeometry,
+		dojoClass,
+		dojoStyle,
+		dojoConstruct,
+		dojoArray,
+		lang,
+		dojoText,
+		dojoHtml,
+		dojoEvent,
+		babylonjs,
+		/*
+		babylonjs_materials,
+		pep,
+		babylonGui,
+		babylonInspectorBundleMax,
+		babylonGlTF1FileLoader,
+		babylonGlTF2FileLoader,
+		babylonGlTFFileLoader,
+		babylonObjFileLoader,
+		babylonStlFileLoader,
+		babylonjsLoaders,
+		babylonCellMaterial,
+		babylonCustomMaterial,
+		babylonFireMaterial,
+		babylonFurMaterial,
+		babylonGradientMaterial,
+		babylonGridMaterial,
+		babylonLavaMaterial,
+		babylonMixMaterial,
+		babylonNormalMaterial,
+		babylonShadowOnlyMaterial,
+		babylonSimpleMaterial,
+		babylonSkyMaterial,
+		babylonTerrainMaterial,
+		babylonTriPlanarMaterial,
+		babylonWaterMaterial,
+		babylonjsMaterials,
+		babylonAsciiArtPostProcess,
+		babylonDigitalRainPostProcess,
+		babylonOceanPostProcess,
+		babylonjsPostProcess,
+		babylonBrickProceduralTexture,
+		babylonCloudProceduralTexture,
+		babylonFireProceduralTexture,
+		babylonGrassProceduralTexture,
+		babylonMarbleProceduralTexture,
+		babylonNormalMapProceduralTexture,
+		babylonPerlinNoiseProceduralTexture,
+		babylonRoadProceduralTexture,
+		babylonStarfieldProceduralTexture,
+		babylonWoodProceduralTexture,
+		babylonjsProceduralTextures,
+		babylonGlTF2Serializer,
+		babylonObjSerializer,
+		babylonjsSerializers,
+		common,	
+		*/
+		widgetTemplate
+	){
+		"use strict";
+		//var $ = _jQuery.noConflict(true);
+		return declare(
+			"MxBabylonJS.widget.MxBabylonJS",
+			[
+				_WidgetBase,
+				_TemplatedMixin
+			],{
+				templateString:widgetTemplate,
+				widgetBase:null,
+				_handles:null,
+				_contextObj:null,
+				isLoading:false,
+				isRunning:false,
+				constructor:function(){
+					this._handles=[];
+				},
+				postCreate:function(){
+					//this.domNode.appendChild(this.canvas);
+				},
+				draw:function(urlP){
+					if(!typeof(urlP)=='string'){
+						this.isLoading=false;
+						this.isRunning=false;
+						return;
+					}
+					if(BABYLON.Engine.isSupported()){
+						var canvas=this.canvas;
+						this.engine=this.engine==null?new BABYLON.Engine(canvas,true):this.engine;
+						BABYLON.SceneLoader.Load("/",urlP,this.engine,dojo.hitch(this,function(scene){
+							this.scene=scene;
+							// Wait for textures and shaders to be ready
+							this.scene.executeWhenReady(dojo.hitch(this,function () {
+								// Attach camera to canvas inputs
+								var camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 2, new BABYLON.Vector3(0,0,5),scene);
+								camera.attachControl(this.canvas, true);
+								// Add lights to the scene
+								//var light1 = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(1, 1, 0), scene);
+								//var light2 = new BABYLON.PointLight("light2", new BABYLON.Vector3(0, 1, -1), scene);
+								// Once the scene is loaded, just register a render loop to render it
+								this.engine.runRenderLoop(dojo.hitch(this,function() {
+									scene.render();
+								}));
+							}));
+						}), function (progress) {
+							// To do: give progress feedback to user
+						});
+						// Watch for browser/canvas resize events
+						window.addEventListener("resize", dojo.hitch(this,function () { 
+								this.engine.resize();
+						}));
+
+					}
+				},
+				update:function(obj,callback){
+					this._contextObj=obj;
+					this._updateRendering(callback);
+				},
+				resize:function(box){
+				},
+				uninitialize:function(){
+				},
+				_updateRendering:function(callback){
+					if(this._contextObj!==null){
+						if(!this.isLoading){
+							var _url='file?guid='+this._contextObj.getGuid()+'&cachebust='+(new Date().getTime())+'&filename='+(this._contextObj.get('Name')==null||this._contextObj.get('Name')==''?'.babylon':this._contextObj.get('Name'));
+							try{
+								this.isLoading=true;
+								this.engine!=null?this.engine.stopRenderLoop():null;
+								this.scene!=null?this.scene.dispose():null;
+								this.draw(_url);
+								this.isRunning=true;
+							}catch(e){
+								console.error(e);
+							}finally{
+								this.isLoading=false;
+								this.isRunning=false;
+							}
+
+						}else{
+						}
+					}else{
+						//dojoStyle.set(this.domNode,"display","none")	;
+					}
+					this._executeCallback(callback,"_updateRendering");
+				},
+				_execMf:function(mf,guid,cb){
+					if(mf&&guid){
+						mx.ui.action(mf,{
+							params:{
+								applyto:"selection",
+								guids:[guid]
+							},
+							callback:lang.hitch(this,function(objs){
+								if(cb&&typeof cb==="function"){
+									cb(objs);
+								}
+							}),
+							error:function(error){
+								console.debug(error.description);
+							}
+						},this);
+					}
+				},
+				_executeCallback:function(cb,from){
+					if(cb&&typeof cb==="function"){
+						cb();
+					}
+				}
+		});
+	}
+);
+//require(["MxBabylonJS/widget/MxBabylonJS"]);
